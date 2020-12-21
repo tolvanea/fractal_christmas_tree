@@ -1,8 +1,7 @@
 # fractal_christmas_tree
-Draw Christmas tree fractal that is similar to Barnsley fern fractal. This is done with less than 30 lines of python code. Code readability is slightly lost by making code compact.
+Renders Christmas tree fractal that is similar to [Barnsley fern](https://en.wikipedia.org/wiki/Barnsley_fern) fractal. The whole python code is written with less than 30 lines. Code readability may be lowered by its compactness.
 
-Alpi Tolvanen 2020
-Licence: MIT or Public Domain
+Alpi Tolvanen 2020. Licence is MIT or CC0
 
 ![Rendered image](tree.png)
 
