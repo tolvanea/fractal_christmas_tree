@@ -80,4 +80,4 @@ ImageDraw.Draw(fig).ellipse((y-8, x-8, y+8, x+8), fill='yellow')
 * Star is drawn on top of tree.
 
 ## Running the code
-**Rendering of picture takes ages!** Please consider using Numba if you do not want to wait half an hour. This repo contains git branch "numba" which has a version of code that renders the fractal in few secods. (It is not default branch because it has few extra code lines, and it requires Numba to be installed.)
+**Rendering of picture takes ages!** Please consider using Numba if you do not want to wait half of an hour. This repo contains git branch "numba" which has a version of code that renders the fractal in half of a minute. (This is not default branch because it has few extra code lines, and it requires Numba to be installed.)
