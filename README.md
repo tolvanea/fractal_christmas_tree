@@ -77,7 +77,7 @@ ImageDraw.Draw(fig).ellipse((y-8, x-8, y+8, x+8), fill='yellow')
 * Sqaure root is applied for color values to make them a bit prettier. The are also scaled on range 0-255.
 * The bottom and top part of image is erased.
     * The bottom part is erased to fake base of a trunk. The base of a trunk is not actually drawn. Instead, the lowest branches are erased to make it appear that three has trunk connecting to a ground.
-    * The top part is erased because this code contains invalid indexing. Some tree parts goes beyond bottom of the image, and negative indicies in python wrap around to the top.
+    * The top part is erased because this code contains invalid indexing. Some tree parts goes beyond bottom of the image appearing in the top because negative indicies wrap around in python.
 * Star is drawn on top of tree.
 
 ## Running the code
