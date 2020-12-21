@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image, ImageDraw    # Run pip3 install pillow
+from PIL import Image, ImageDraw  # Run 'pip3 install pillow'
 w, h = 1280, 1920  # width, height
 data = [([[ 0.1,  0.00],[ 0.00, 0.2]], [0.0, 0.3]),     # trunk
         ([[ 0.1,  0.00],[ 0.00, 0.2]], [0.0, 0.37]),    # trunk
@@ -19,12 +19,12 @@ def draw_tree(affines):
             x, y = int(w * (r[j][0]/3.5 - 0.5)), int(h * (r[j][1]/7.5 + 0.05))
             img[y, x, :] += np.array([1,8,1], dtype=np.uint8)
     return img
-affines = list(map(lambda t: (np.array(t[0]), np.array(t[1])), data))
-img = draw_tree(affines)
+data_numpy = list(map(lambda t: (np.array(t[0]), np.array(t[1])), data))
+img = draw_tree(data_numpy)
 img[...] = np.sqrt(img / img.max()) * 255
 img[:h//17, :] = 0; img[-h//10:, :] = 0
 fig = Image.fromarray(img[::-1,:].astype(np.uint8))
 x, y = int(h*0.135), int(w*0.634)  # star
 ImageDraw.Draw(fig).ellipse((y-8, x-8, y+8, x+8), fill='yellow')
-fig.save('tree.png'); fig.save('tree.webp', lossless=True)
+fig.save('tree.png'); fig.save('tree_lossless.webp', lossless=True)
 
