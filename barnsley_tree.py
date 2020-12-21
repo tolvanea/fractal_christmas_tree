@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image, ImageDraw  # Run 'pip3 install pillow'
-from numba import jit
+from numba import jit  # Run 'pip3 install numba'
 from numba.typed import List
 w, h = 1280, 1920  # width, height
 data = [([[ 0.1,  0.00],[ 0.00, 0.2]], [0.0, 0.3]),     # trunk
