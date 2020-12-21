@@ -1,8 +1,7 @@
 # fractal_christmas_tree
-Draw Christmas tree fractal that is similar to Barnsley fern fractal. This is done with less than 30 lines of python code. Code readability is slightly lost by making code compact.
+Renders Christmas tree fractal that is similar to [Barnsley fern](https://en.wikipedia.org/wiki/Barnsley_fern) fractal. The whole python code is written with less than 30 lines. Code readability may be lowered by its compactness.
 
-Alpi Tolvanen 2020
-Licence: MIT or Public Domain
+Alpi Tolvanen 2020. Licence is MIT or CC0
 
 ![Rendered image](tree.png)
 
@@ -23,25 +22,25 @@ Variable `data` contains affine transformations that are in hearth of the fracta
 
 The 5 transformations are:
 1. Copy the whole tree to base of a trunk. That is, the trunk is actually just scaled down version of the tree.
-2. Similar copy and pasting as in 1. This makes trunk a bit more dense and uniform.
-3. Copy layer of branches one step vertically up. Only the lowest branches are actually needed, and all the rest are copied. Branches are also scaled down a bit so that they get smaller the higher they are.
+2. Similar copy as above. This makes trunk a bit more dense and uniform.
+3. Copy layer of branches vertically up one step. Only the lowest branches are needed, because all the rest are copied with this transformation. Branches are also scaled down a bit so that they get smaller the higher they are.
 4. Copy left half of a tree to the lowest left branch. This transformation also does some skewing so that sub brances look better.
 5. Copy left half of a tree to lowest right branch.
 
-[This online tool](https://www.desmos.com/calculator/avfh60ysiv) was very useful in figuring out the correct transformations.
+[This online tool](https://www.desmos.com/calculator/avfh60ysiv) was very useful in figuring out the correct rotation and skewing.
 
 
 ### Iteration
 
-The original Barnsley fern iteration happends as following:
-    1. Start from one point
-    2. Choose one transformation by random. Use specified probabilities for each transformation.
-    3. Apply that transformation for the point and light up a pixel in this location.
-    4. Repeat from 2.
+The original Barnsley fern iteration is as following:
+1. Start from one point
+2. Choose one transformation by random. Use specified probabilities for each transformation.
+3. Apply that transformation for the point and light up a pixel in this location.
+4. Repeat from 2
 
-However, this fractal contains a considerable modification compared to original Barnsley fern: Two points are itearated simultaneously instead of one. Transformations 1.-3. are applied identically to these both of the points, but transformations 4. is only applied to first point and 5. is only applied to latter. The latter point is always synchronized with first point so that tree remains symmetric.
+However, this fractal contains one modification compared to original Barnsley fern: Two points are itearated simultaneously instead of just one. Transformations 1-3 are applied identically to these two points, but transformations 4 is only applied to first point and 5 is only applied to latter. The latter point is always synchronized with first point so that tree remains symmetric.
 
-The probabilities in step 2. are chosen so that points are somewhat evenly distributen. They were quite easy to fing out by just trying and testing.
+The probabilities for transformations are chosen so that points are somewhat evenly distributed. They were quite easy to find out by just trying and testing.
 
 
 ```python3
@@ -74,10 +73,12 @@ x, y = int(h*0.135), int(w*0.634)  # star
 ImageDraw.Draw(fig).ellipse((y-8, x-8, y+8, x+8), fill='yellow')
 ```
 
-* Variable `data_numpy` is just `data` but expressed as numpy arrays. This hack is done to only save few characters.
-* Color values are scaled on range 0-255 and square root is used to make them a bit prettier
-* The bottom and top part of image is erased. The bottom part is erased because the base trunk is not actually drawn. Istead, the lowest branches are erased to make it appear that three has trunk connected to ground. (On the other hand, the top part is erased because this code contains invalid indexing: negative indicies in python wrap around.)
+* Variable `data_numpy` is just `data` but expressed as numpy arrays. This hack is done only to pack code.
+* Sqaure root is applied for color values to make them a bit prettier. The are also scaled on range 0-255.
+* The bottom and top part of image is erased.
+    * The bottom part is erased to fake base of a trunk. The base of a trunk is not actually drawn. Instead, the lowest branches are erased to make it appear that three has trunk connecting to a ground.
+    * The top part is erased because this code contains invalid indexing. Some tree parts goes beyond bottom of the image appearing in the top because negative indicies wrap around in python.
 * Star is drawn on top of tree.
 
 ## Running the code
-**Rendering of picture takes ages!** Please consider using Numba if you do not want to wait half of an hour. This repo contains git branch "numba" which has a version of code that renders the fractal in half of a minute. (This is not default branch because it has few extra code lines, and it requires Numba to be installed.)
+**Rendering of picture takes ages!** Please consider using Numba if you do not want to wait half of an hour. This repo contains git branch "numba" which has a version of code that renders the fractal in half of a minute. "numba" is not default branch because it has few extra code lines, and it requires Numba to be installed.
