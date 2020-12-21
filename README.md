@@ -4,6 +4,8 @@ Draw Christmas tree fractal that is similar to Barnsley fern fractal. This is do
 Alpi Tolvanen 2020
 Licence: MIT or Public Domain
 
+![Rendered image](tree.png)
+
 ## Code explanation
 This fractal is based on modified version of [Barnsley fern](https://en.wikipedia.org/wiki/Barnsley_fern).
 
