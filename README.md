@@ -10,6 +10,8 @@ This fractal is based on modified version of [Barnsley fern](https://en.wikipedi
 
 ### Affine transformations
 ```python3
+import numpy as np
+from PIL import Image, ImageDraw  # Run 'pip3 install pillow'
 w, h = 1280, 1920  # width, height
 data = [([[ 0.1,  0.0], [ 0.0,  0.2]],  [ 0.0, 0.3]),   # trunk
         ([[ 0.1,  0.0], [ 0.0,  0.2]],  [ 0.0, 0.37]),  # trunk
@@ -72,6 +74,7 @@ img[:h//17, :] = 0; img[-h//10:, :] = 0
 fig = Image.fromarray(img[::-1, :].astype(np.uint8))
 x, y = int(h*0.135), int(w*0.634)  # star
 ImageDraw.Draw(fig).ellipse((y-8, x-8, y+8, x+8), fill='yellow')
+fig.save('tree.png'); fig.save('tree_lossless.webp', lossless=True)
 ```
 
 * Variable `data_numpy` is just `data` but expressed as numpy arrays. This hack is done only to pack code.
