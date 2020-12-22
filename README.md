@@ -5,6 +5,9 @@ Alpi Tolvanen 2020. Licence is MIT or CC0
 
 ![Rendered image](tree.png)
 
+## Running the code
+**Rendering of picture takes ages!** Please consider using Numba if you do not want to wait half of an hour. This repo contains git branch "numba" which has a version of code that renders the fractal in half of a minute. "numba" is not default branch because it has few extra code lines, and it requires Numba to be installed.
+
 ## Code explanation
 This fractal is based on modified version of [Barnsley fern](https://en.wikipedia.org/wiki/Barnsley_fern).
 
@@ -45,15 +48,12 @@ The original Barnsley fern iteration is as following:
 
 However, this fractal contains one modification compared to original Barnsley fern: Two points are itearated simultaneously instead of just one. Transformations 1-3 are applied identically to these two points, but transformations 4 is only applied to first point and 5 is only applied to latter. The latter point is always synchronized with first point so that tree remains symmetric.
 
-The probabilities for transformations are chosen so that points are somewhat evenly distributed. They were quite easy to find out by just trying and testing.
-
-
 ```python3
 @jit(nopython=True)
 def draw_tree(affines):
     img = np.zeros((h, w, 3), dtype=np.uint32)
     r = [np.array([0.0, 0.0]), np.array([0.0, 0.0])]
-    for i in range(w*h*10):
+    for _ in range(w*h*10):
         rnd = np.random.rand()
         if rnd < 0.02:
             idx = 0
@@ -73,6 +73,9 @@ def draw_tree(affines):
     return img
 ```
 
+The rendering time can be shortened by decreasing iterations from `w*h*10` to `ẁ*h//10` for example.
+
+The probabilities for transformations are chosen so that points are somewhat evenly distributed. They were quite easy to find out by just trying and testing.
 
 ### Boring stuff
 This part contains parts that are not important in algorithmic viewpoint.
