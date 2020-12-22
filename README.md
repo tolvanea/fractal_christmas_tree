@@ -81,7 +81,7 @@ fig.save('tree.png'); fig.save('tree_lossless.webp', lossless=True)
 ```
 
 * Variable `data_numpy` is just `data` but expressed as numpy arrays. This hack is done only to pack code.
-* Sqaure root is applied for color values to make them a bit prettier. The are also scaled on range 0-255.
+* Sqaure root is applied for color values to make them a bit prettier. They are also scaled on range 0-255.
 * The bottom and top part of image is erased.
     * The bottom part is erased to fake base of a trunk. The base of a trunk is not actually drawn. Instead, the lowest branches are erased to make it appear that three has trunk connecting to a ground.
     * The top part is erased because this code contains invalid indexing. Some tree parts goes beyond bottom of the image appearing in the top because negative indicies wrap around in python.
