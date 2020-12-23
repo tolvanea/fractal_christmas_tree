@@ -76,10 +76,7 @@ function trim_tree_(image_array)
         for row in rows - div(rows,20):rows
             image_array[row,col] = 0.0
         end
-    end
-    for col in 1:cols
         for row in 1:div(rows, 16)
-            # println(row,col)
             image_array[row,col] = 0.0
         end
     end
