@@ -13,14 +13,16 @@ const IMAGE_PATH = joinpath(@__DIR__, "kuusipuu.png")
 const IMAGE_WIDTH, IMAGE_HEIGHT = 1280, 1920
 
 # Initial data for constructing the tree
-# Cosnsists of (matrix, vector) pairs.
-const INITIAL_DATA = [
+# The short circuit condition is here to prevent a redifinition
+# and the subsequent warning form the REPL,
+# when this script is ran more than once.
+isdefined(Main, :INITIAL_DATA) || const INITIAL_DATA = (
     ([ 0.1  0.0; 0.0 0.2],  [ 0.0, 0.3]),    # trunk
     ([ 0.1  0.0; 0.0 0.2],  [ 0.0, 0.37]),   # trunk
     ([ 0.87 0.01; -0.01 0.87], [ 0.0, 0.8]), # copy branches
     ([ 0.3 -0.3; 0.7 -0.2],  [ 0.0, 0.3]),   # left branch
     ([-0.3  0.3; 0.7 -0.2],  [-0.0, 0.3])    # right branch
-]
+)
 
 
 """
