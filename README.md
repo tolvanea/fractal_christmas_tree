@@ -86,3 +86,23 @@ fig.save('tree.png'); fig.save('tree_lossless.webp', lossless=True)
     * The bottom part is erased to fake base of a trunk. The base of a trunk is not actually drawn. Instead, the lowest branches are erased to make it appear that three has trunk connecting to a ground.
     * The top part is erased because this code contains invalid indexing. Some tree parts goes beyond bottom of the image appearing in the top because negative indicies wrap around in python.
 * Star is drawn on top of tree.
+
+
+### A Julia implementation
+
+... without the star and other minor details was added to see how Julia fared against standard CPython and even Numba.
+Turns out it did pretty well, even if that was to be expected.
+The implementation is located in the file `barnsley_tree.jl`.
+The Julia dependecies are listed in `Project.toml` and `Manifest.toml`.
+
+To run the julia implementation, it should be enough to run the following lines after installing
+Julia and navogating to the project directory:
+```julia
+shell> julia
+julia> ]
+  pkg> activate .
+  pkg> instantiate
+  pkg> <backspace>
+julia> include("barnsley_tree.jl")
+```
+The JIT compilation might take a while on a first run in a fresh Julia session, so be patient...
